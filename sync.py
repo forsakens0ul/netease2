@@ -63,8 +63,16 @@ def create_or_update_page(song_data, page_id=None):
         notion.pages.update(page_id=page_id, properties=props)
     else:
         notion.pages.create(parent={"database_id": NOTION_DB_ID}, properties=props)
+def check_env_vars():
+    required = ['NETEASE_API', 'NETEASE_COOKIE', 'NETEASE_UID', 'NOTION_TOKEN', 'NOTION_DB_ID']
+    for var in required:
+        if not os.getenv(var):
+            raise ValueError(f"❌ 环境变量 {var} 未设置，请检查 GitHub Secrets 或 .env 文件。")
+
+
 
 def main():
+    check_env_vars()
     print("🔄 获取网易云记录...")
     records = fetch_listening_data()
     print(f"✅ 共拉取到 {len(records)} 条记录")
