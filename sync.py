@@ -5,7 +5,7 @@ import time
 import os
 
 # === 改为从环境变量中读取配置 ===
-NETEASE_API = os.getenv("NETEASE_API", "https://netease-cloud-music-api-tau-one-92.vercel.app/")
+NETEASE_API = os.getenv("NETEASE_API")
 COOKIE = os.getenv("NETEASE_COOKIE")
 UID = os.getenv("NETEASE_UID")
 NOTION_TOKEN = os.getenv("NOTION_TOKEN")
